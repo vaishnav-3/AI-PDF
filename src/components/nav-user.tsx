@@ -26,10 +26,27 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { useUser } from "@clerk/nextjs";
+import { useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
+import { useEffect } from "react";
 
 export function NavUser() {
   const { isMobile } = useSidebar();
   const { user } = useUser();
+
+  const createUser = useMutation(api.user.createUser);
+
+  useEffect(() => {
+    user && checkUser();
+  }, [user]);
+
+  const checkUser = async () => {
+    await createUser({
+      email: user?.primaryEmailAddress?.emailAddress!,
+      imageUrl: user?.imageUrl!,
+      userName: user?.fullName!,
+    });
+  };
   return (
     <SidebarMenu>
       <SidebarMenuItem>

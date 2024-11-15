@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Bot, Command, Settings2 } from "lucide-react";
+import { LayoutPanelLeft, Plus, Command, ShieldEllipsis } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
 
@@ -16,18 +16,20 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Separator } from "./ui/separator";
+import UploadPdfFile from "./upload-pdf";
+import { Button } from "./ui/button";
 
 const data = {
   navMain: [
     {
       title: "Workspace",
       url: "/dashboard",
-      icon: Bot,
+      icon: LayoutPanelLeft,
     },
     {
       title: "Upgrade to pro",
       url: "#",
-      icon: Settings2,
+      icon: ShieldEllipsis,
     },
   ],
 };
@@ -52,7 +54,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <Separator />
+      <Separator className="mb-5" />
+      <UploadPdfFile>
+        <Button>
+          <Plus />
+          Upload PDF
+        </Button>
+      </UploadPdfFile>
       <SidebarContent>
         <NavMain items={data.navMain} />
       </SidebarContent>
