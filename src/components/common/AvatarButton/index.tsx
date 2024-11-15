@@ -21,8 +21,8 @@ const AvatarButton = () => {
   };
 
   return (
-    <div>
-      <UserButton />
+    <div className="flex justify-center">
+      <UserButton showName />
     </div>
   );
 };
