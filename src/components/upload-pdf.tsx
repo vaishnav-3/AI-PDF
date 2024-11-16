@@ -16,11 +16,12 @@ import { ChangeEvent, useRef, useState } from "react";
 import { Loader2Icon } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
 import { useUser } from "@clerk/nextjs";
+import axios from "axios";
 
 const UploadPdfFile = ({ children }: { children: React.ReactNode }) => {
   const generateUploadUrl = useMutation(api.fileStorage.generateUploadUrl);
   const insertToDB = useMutation(api.fileStorage.insertFileToDB);
-
+  const getFileUrl = useMutation(api.fileStorage.getFileUrl);
   const { user } = useUser();
   const [file, setFile] = useState<File | null>(null);
   const [filename, setFilename] = useState<string>("");
@@ -46,14 +47,20 @@ const UploadPdfFile = ({ children }: { children: React.ReactNode }) => {
 
     const { storageId } = await result.json();
     const fileId = uuidv4();
+    const fileUrl = await getFileUrl({ storageId });
 
     //insert storage id to db
     const insertDB = await insertToDB({
       fileId: fileId,
-      fileName: filename,
+      fileName: filename ?? "Untitled File",
+      fileUrl: fileUrl!,
       createdBy: user?.primaryEmailAddress?.emailAddress!,
       storageId: storageId,
     });
+
+    //fetch PDF processed text data
+    const response = await axios.get("/api/pdf-loader");
+    console.log(response.data.result);
 
     setLoading(false);
     setFile(null);
@@ -82,6 +89,7 @@ const UploadPdfFile = ({ children }: { children: React.ReactNode }) => {
             <Input
               id="filename"
               placeholder="File Name"
+              value={filename}
               onChange={(e) => setFilename(e.target.value)}
             />
           </div>

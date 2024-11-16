@@ -47,6 +47,7 @@ export function NavUser() {
       userName: user?.fullName!,
     });
   };
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
