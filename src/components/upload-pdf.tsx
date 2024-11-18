@@ -10,7 +10,7 @@ import {
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
-import { useMutation } from "convex/react";
+import { useAction, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { ChangeEvent, useRef, useState } from "react";
 import { Loader2Icon } from "lucide-react";
@@ -22,11 +22,13 @@ const UploadPdfFile = ({ children }: { children: React.ReactNode }) => {
   const generateUploadUrl = useMutation(api.fileStorage.generateUploadUrl);
   const insertToDB = useMutation(api.fileStorage.insertFileToDB);
   const getFileUrl = useMutation(api.fileStorage.getFileUrl);
+  const embedDocument = useAction(api.myActions.ingest);
+
   const { user } = useUser();
   const [file, setFile] = useState<File | null>(null);
   const [filename, setFilename] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-
+  const [open, setOpen] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const onFileSelect = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -50,26 +52,33 @@ const UploadPdfFile = ({ children }: { children: React.ReactNode }) => {
     const fileUrl = await getFileUrl({ storageId });
 
     //insert storage id to db
-    const insertDB = await insertToDB({
+    await insertToDB({
       fileId: fileId,
-      fileName: filename ?? "Untitled File",
+      fileName: filename == "" ? "Untitled File" : filename,
       fileUrl: fileUrl!,
       createdBy: user?.primaryEmailAddress?.emailAddress!,
       storageId: storageId,
     });
 
-    //fetch PDF processed text data
-    const response = await axios.get("/api/pdf-loader");
-    console.log(response.data.result);
+    const response = await axios.get("/api/pdf-loader?pdfUrl=" + fileUrl);
+
+    await embedDocument({
+      splitText: response.data.result,
+      fileId: fileId,
+    });
 
     setLoading(false);
+    setOpen(false);
     setFile(null);
     setFilename("");
     inputRef.current!.value = "";
   };
+
   return (
-    <Dialog>
-      <DialogTrigger asChild>{children}</DialogTrigger>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button>{children}</Button>
+      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Upload PDF</DialogTitle>
@@ -97,7 +106,7 @@ const UploadPdfFile = ({ children }: { children: React.ReactNode }) => {
             <DialogClose>
               <Button variant="outline">Close</Button>
             </DialogClose>
-            <Button onClick={onUpload}>
+            <Button onClick={onUpload} disabled={loading}>
               {loading ? <Loader2Icon className="animate-spin" /> : "Upload"}
             </Button>
           </div>

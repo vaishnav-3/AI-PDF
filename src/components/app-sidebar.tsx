@@ -56,10 +56,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <Separator className="mb-5" />
       <UploadPdfFile>
-        <Button>
-          <Plus />
-          Upload PDF
-        </Button>
+        <Plus />
+        Upload PDF
       </UploadPdfFile>
       <SidebarContent>
         <NavMain items={data.navMain} />
