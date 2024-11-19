@@ -1,5 +1,6 @@
 import WorkspaceHeader from "@/components/workspace/header";
-import PdfViewer from "@/components/workspace/pdfviewer";
+import PdfViewer from "@/components/workspace/pdf-viewer";
+import TextEditor from "@/components/workspace/text-editor";
 
 interface paramsTypes {
   params: {
@@ -14,7 +15,9 @@ const page = async ({ params }: paramsTypes) => {
     <div>
       <WorkspaceHeader />
       <div className="grid grid-cols-2 gap-5">
-        <div></div>
+        <div>
+          <TextEditor />
+        </div>
         <div>
           <PdfViewer fileId={fileId} />
         </div>

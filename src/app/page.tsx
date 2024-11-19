@@ -13,7 +13,6 @@ import {
   CheckCircle,
   Star,
   Menu,
-  X,
 } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -74,6 +73,12 @@ export default function LandingPage() {
             href="#testimonials"
           >
             Testimonials
+          </Link>
+          <Link
+            className="text-sm font-medium hover:underline underline-offset-4"
+            href="/dashboard"
+          >
+            Dashboard
           </Link>
         </nav>
       </header>

@@ -1,7 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { LayoutPanelLeft, Plus, Command, ShieldEllipsis } from "lucide-react";
+import {
+  LayoutPanelLeft,
+  Plus,
+  Command,
+  ShieldEllipsis,
+  Brain,
+} from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
 
@@ -42,8 +48,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <a href="#">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <Command className="size-4" />
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg  text-sidebar-primary-foreground">
+                  <Brain className="h-6 w-6 text-blue-600" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">Notely.ai</span>
