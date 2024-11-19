@@ -76,7 +76,7 @@ const UploadPdfFile = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+      <DialogTrigger asChild className="mx-2">
         <Button>{children}</Button>
       </DialogTrigger>
       <DialogContent>
