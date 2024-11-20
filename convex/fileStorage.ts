@@ -49,3 +49,19 @@ export const getPdfRecord = query({
     return result;
   },
 });
+
+export const getUserPdfs = query({
+  args: {
+    email: v.string(),
+  },
+  handler: async (ctx, args) => {
+    if (!args.email) return;
+
+    const records = await ctx.db
+      .query("pdfFiles")
+      .filter((q) => q.eq(q.field("createdBy"), args.email))
+      .collect();
+
+    return records;
+  },
+});
