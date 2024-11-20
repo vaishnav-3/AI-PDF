@@ -18,7 +18,7 @@ const PdfViewer = ({ fileId }: { fileId: string }) => {
         <iframe
           src={pdfRecord![0].fileUrl + "#toolbar=0"}
           width={"100%"}
-          className="h-[90vh]"
+          className="h-screen"
         />
       )}
     </div>

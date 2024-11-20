@@ -13,6 +13,7 @@ import {
   CheckCircle,
   Star,
   Menu,
+  LayoutDashboard,
 } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -48,7 +49,7 @@ export default function LandingPage() {
           </Button>
         </div>
         <nav
-          className={`${mobileMenuOpen ? "flex" : "hidden"} md:flex absolute md:relative top-14 left-0 right-0 bg-background md:top-0 flex-col md:flex-row gap-4 md:ml-auto p-4 md:p-0 border-b md:border-none`}
+          className={`${mobileMenuOpen ? "flex" : "hidden"}  md:flex absolute md:relative top-14 left-0 right-0 bg-background md:top-0 flex-col md:items-center md:flex-row gap-12 md:ml-auto p-4 md:p-0 border-b md:border-none`}
         >
           <Link
             className="text-sm font-medium hover:underline underline-offset-4"
@@ -75,20 +76,21 @@ export default function LandingPage() {
             Testimonials
           </Link>
           <Link
-            className="text-sm font-medium hover:underline underline-offset-4"
+            className="text-sm flex bg-blue-600 gap-3 p-2 text-white rounded-md font-medium"
             href="/dashboard"
           >
+            <LayoutDashboard size={20} />
             Dashboard
           </Link>
         </nav>
       </header>
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800">
           <div className="container mx-auto px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-500">
+                  <h1 className="text-3xl font-bold tracking-tighter  sm:text-[48px] leading-[1.2] xl:text-[60px] bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-500">
                     Smart PDF Notes with Artificial Intelligence
                   </h1>
                   <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">

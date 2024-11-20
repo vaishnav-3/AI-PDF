@@ -3,6 +3,7 @@ import { Outfit } from "next/font/google";
 import { ConvexClientProvider } from "@/providers/ConvexClientProvider";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Notely.ai",
@@ -21,6 +22,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={outfit.className}>
           <ConvexClientProvider>{children}</ConvexClientProvider>
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>

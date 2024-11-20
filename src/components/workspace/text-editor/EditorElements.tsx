@@ -1,3 +1,4 @@
+import { useAction, useMutation } from "convex/react";
 import {
   Bold,
   Code,
@@ -10,11 +11,59 @@ import {
   Sparkles,
   Strikethrough,
 } from "lucide-react";
+import { useParams } from "next/navigation";
+import { api } from "../../../../convex/_generated/api";
+import { chatSession } from "@/config/Gemini";
+import { toast } from "sonner";
+import { useUser } from "@clerk/nextjs";
+import { useEffect } from "react";
 
 const EditorElements = ({ editor }: { editor: any }) => {
+  const { fileId } = useParams();
+  const vectorSearch = useAction(api.myActions.search);
+  const { user } = useUser();
+  const addNotes = useMutation(api.notes.saveNotes);
   if (!editor) {
     return null;
   }
+
+  const onAIAssist = async () => {
+    toast("AI is generating your answer please wait...");
+    const selectedText = editor.state.doc.textBetween(
+      editor.state.selection.from,
+      editor.state.selection.to,
+      ""
+    );
+
+    const vectors = await vectorSearch({
+      fileId: fileId as string,
+      query: selectedText,
+    });
+
+    const jsonParsed = JSON.parse(vectors);
+    let textContent = "";
+
+    jsonParsed &&
+      jsonParsed.forEach((d: any) => {
+        textContent += d.pageContent;
+      });
+
+    const prompt = `For given question: ${selectedText} format the content: ${textContent} like an answer to the question Note: please give output in html format`;
+    const answer = await chatSession.sendMessage(prompt);
+    const allText = editor.getHTML();
+    const finalAns = answer.response
+      .text()
+      .replaceAll("```", "")
+      .replaceAll("html", "");
+    console.log(finalAns);
+    editor.commands.setContent(allText + "<strong>Answer:</strong>" + finalAns);
+
+    await addNotes({
+      fileId: fileId as string,
+      notes: editor.getHTML(),
+      createdBy: user?.primaryEmailAddress?.emailAddress as string,
+    });
+  };
 
   return (
     <div className="control-group p-5">
@@ -97,7 +146,7 @@ const EditorElements = ({ editor }: { editor: any }) => {
         >
           <Code />
         </button>
-        <button>
+        <button className="hover:text-blue-500" onClick={onAIAssist}>
           <Sparkles />
         </button>
       </div>
