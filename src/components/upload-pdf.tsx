@@ -77,7 +77,7 @@ const UploadPdfFile = ({ children }: { children: React.ReactNode }) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild className="mx-2">
-        <Button>{children}</Button>
+        <Button className="bg-blue-500 hover:bg-blue-400">{children}</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -106,7 +106,11 @@ const UploadPdfFile = ({ children }: { children: React.ReactNode }) => {
             <DialogClose>
               <Button variant="outline">Close</Button>
             </DialogClose>
-            <Button onClick={onUpload} disabled={loading}>
+            <Button
+              onClick={onUpload}
+              disabled={loading}
+              className="bg-blue-500 hover:bg-blue-400"
+            >
               {loading ? <Loader2Icon className="animate-spin" /> : "Upload"}
             </Button>
           </div>

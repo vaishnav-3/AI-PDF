@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Separator } from "./ui/separator";
 import UploadPdfFile from "./upload-pdf";
-import { Button } from "./ui/button";
+import Link from "next/link";
 
 const data = {
   navMain: [
@@ -33,8 +33,8 @@ const data = {
       icon: LayoutPanelLeft,
     },
     {
-      title: "Upgrade to pro",
-      url: "#",
+      title: "Upgrade plan",
+      url: "/dashboard/upgrade",
       icon: ShieldEllipsis,
     },
   ],
@@ -47,7 +47,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <a href="#">
+              <Link href="/">
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg  text-sidebar-primary-foreground">
                   <Brain className="h-6 w-6 text-blue-600" />
                 </div>
@@ -55,7 +55,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <span className="truncate font-semibold">Notely.ai</span>
                   <span className="truncate text-xs">Enterprise</span>
                 </div>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
