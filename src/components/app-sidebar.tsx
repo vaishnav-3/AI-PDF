@@ -1,13 +1,7 @@
 "use client";
 
 import * as React from "react";
-import {
-  LayoutPanelLeft,
-  Plus,
-  Command,
-  ShieldEllipsis,
-  Brain,
-} from "lucide-react";
+import { LayoutPanelLeft, Plus, ShieldEllipsis, Brain } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
 
@@ -24,6 +18,10 @@ import {
 import { Separator } from "./ui/separator";
 import UploadPdfFile from "./upload-pdf";
 import Link from "next/link";
+import { Progress } from "./ui/progress";
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
+import { useUser } from "@clerk/nextjs";
 
 const data = {
   navMain: [
@@ -41,6 +39,10 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { user } = useUser();
+  const userPdfs = useQuery(api.fileStorage.getUserPdfs, {
+    email: user?.primaryEmailAddress?.emailAddress as string,
+  });
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
@@ -61,7 +63,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <Separator className="mb-5" />
-      <UploadPdfFile>
+      <UploadPdfFile limitReached={userPdfs?.length === 5 ? true : false}>
         <Plus />
         Upload PDF
       </UploadPdfFile>
@@ -69,6 +71,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
+        {userPdfs && <Progress value={(userPdfs.length / 5) * 100} />}
+        <div>{userPdfs?.length} out of 5 pdf</div>
         <NavUser />
       </SidebarFooter>
     </Sidebar>

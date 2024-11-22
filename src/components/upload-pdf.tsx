@@ -17,8 +17,15 @@ import { Loader2Icon } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
+import { toast } from "sonner";
 
-const UploadPdfFile = ({ children }: { children: React.ReactNode }) => {
+const UploadPdfFile = ({
+  children,
+  limitReached,
+}: {
+  children: React.ReactNode;
+  limitReached: boolean;
+}) => {
   const generateUploadUrl = useMutation(api.fileStorage.generateUploadUrl);
   const insertToDB = useMutation(api.fileStorage.insertFileToDB);
   const getFileUrl = useMutation(api.fileStorage.getFileUrl);
@@ -72,12 +79,18 @@ const UploadPdfFile = ({ children }: { children: React.ReactNode }) => {
     setFile(null);
     setFilename("");
     inputRef.current!.value = "";
+    toast("file is ready for note taking!!");
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild className="mx-2">
-        <Button className="bg-blue-500 hover:bg-blue-400">{children}</Button>
+        <Button
+          className="bg-blue-500 hover:bg-blue-400"
+          disabled={limitReached}
+        >
+          {children}
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
