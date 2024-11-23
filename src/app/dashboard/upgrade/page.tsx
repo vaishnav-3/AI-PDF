@@ -1,4 +1,23 @@
+"use client";
+import { useUser } from "@clerk/nextjs";
+import axios from "axios";
+
+interface paymentIntentType {
+  data: {
+    message: string;
+    url: string;
+  };
+}
 const page = () => {
+  const { user } = useUser();
+  const initPayment = async () => {
+    const paymentIntent: paymentIntentType = await axios.post("/api/upgrade", {
+      email: user?.primaryEmailAddress?.emailAddress,
+    });
+    if (paymentIntent.data.message === "success") {
+      window.location.href = paymentIntent.data.url;
+    }
+  };
   return (
     <div className="p-10">
       <h2 className="text-3xl font-bold">Plans</h2>
@@ -97,12 +116,12 @@ const page = () => {
               </li>
             </ul>
 
-            <a
-              href="#"
+            <button
+              onClick={initPayment}
               className="mt-8 block rounded-full border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-indigo-700 hover:ring-1 hover:ring-indigo-700 focus:outline-none focus:ring active:text-indigo-500"
             >
               Get Started
-            </a>
+            </button>
           </div>
 
           <div className="rounded-2xl border border-gray-200 p-6 shadow-sm sm:px-8 lg:p-12">
