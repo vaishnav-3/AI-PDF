@@ -10,7 +10,6 @@ import {
   Zap,
   Lock,
   Users,
-  CheckCircle,
   Star,
   Menu,
   LayoutDashboard,
@@ -86,7 +85,7 @@ export default function LandingPage() {
       </header>
       <main className="flex-1">
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800">
-          <div className="container mx-auto px-4 md:px-6">
+          <div className="container max-w-[1400px] mx-auto px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">

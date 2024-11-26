@@ -43,6 +43,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const userPdfs = useQuery(api.fileStorage.getUserPdfs, {
     email: user?.primaryEmailAddress?.emailAddress as string,
   });
+
+  const plan = useQuery(api.user.fetchUserPlan, {
+    email: user?.primaryEmailAddress?.emailAddress as string,
+  });
+
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
@@ -63,7 +68,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <Separator className="mb-5" />
-      <UploadPdfFile limitReached={userPdfs?.length === 5 ? true : false}>
+      <UploadPdfFile
+        limitReached={
+          userPdfs && userPdfs?.length >= 5 && plan === "free" ? true : false
+        }
+      >
         <Plus />
         Upload PDF
       </UploadPdfFile>
@@ -71,8 +80,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        {userPdfs && <Progress value={(userPdfs.length / 5) * 100} />}
-        <div>{userPdfs?.length} out of 5 pdf</div>
+        {userPdfs && plan === "free" && (
+          <div>
+            <Progress value={(userPdfs.length / 5) * 100} />
+            <div>{userPdfs?.length} out of 5 pdf</div>
+          </div>
+        )}
+        {plan === "unlimited" && <h2>Unlimited</h2>}
         <NavUser />
       </SidebarFooter>
     </Sidebar>

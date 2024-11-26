@@ -1,4 +1,6 @@
 import crypto from "crypto";
+import { fetchMutation } from "convex/nextjs";
+import { api } from "../../../../convex/_generated/api";
 
 export async function POST(req: Request) {
   try {
@@ -21,14 +23,24 @@ export async function POST(req: Request) {
     console.log(body);
 
     if (eventType === "order_created") {
-      const userId = body.meta.custom_data.email;
+      const userEmail = body.meta.custom_data.email;
       const isSuccessful = body.data.attributes.status === "paid";
-      console.log(userId, isSuccessful);
+      console.log(userEmail, isSuccessful);
+      if (isSuccessful) {
+        const result = await fetchMutation(api.user.updateUserPlan, {
+          email: userEmail,
+        });
+        console.log(result);
+      }
     }
 
-    return Response.json({ message: "Webhook received" });
+    return new Response(JSON.stringify({ message: "Webhook received" }), {
+      status: 200,
+    });
   } catch (err) {
     console.error(err);
-    return Response.json({ message: "Server error" }, { status: 500 });
+    return new Response(JSON.stringify({ message: "Server error" }), {
+      status: 500,
+    });
   }
 }

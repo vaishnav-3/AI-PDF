@@ -1,6 +1,8 @@
 "use client";
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
+import { useQuery } from "convex/react";
+import { api } from "../../../../convex/_generated/api";
 
 interface paymentIntentType {
   data: {
@@ -10,6 +12,9 @@ interface paymentIntentType {
 }
 const page = () => {
   const { user } = useUser();
+  const plan = useQuery(api.user.fetchUserPlan, {
+    email: user?.primaryEmailAddress?.emailAddress as string,
+  });
   const initPayment = async () => {
     const paymentIntent: paymentIntentType = await axios.post("/api/upgrade", {
       email: user?.primaryEmailAddress?.emailAddress,
@@ -118,9 +123,10 @@ const page = () => {
 
             <button
               onClick={initPayment}
-              className="mt-8 block rounded-full border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-indigo-700 hover:ring-1 hover:ring-indigo-700 focus:outline-none focus:ring active:text-indigo-500"
+              disabled={plan === "unlimited"}
+              className="mt-8 mx-auto block rounded-full border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-indigo-700 hover:ring-1 hover:ring-indigo-700 focus:outline-none focus:ring active:text-indigo-500"
             >
-              Get Started
+              {plan === "unlimited" ? "Current plan" : "Get Started"}
             </button>
           </div>
 

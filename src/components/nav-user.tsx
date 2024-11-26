@@ -19,7 +19,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { useClerk, useUser } from "@clerk/nextjs";
-import { useMutation } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -30,7 +30,9 @@ export function NavUser() {
   const { signOut } = useClerk();
   const router = useRouter();
   const createUser = useMutation(api.user.createUser);
-
+  const plan = useQuery(api.user.fetchUserPlan, {
+    email: user?.primaryEmailAddress?.emailAddress as string,
+  });
   useEffect(() => {
     user && checkUser();
   }, [user]);
@@ -88,14 +90,16 @@ export function NavUser() {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem
-                onClick={() => router.push("/dashboard/upgrade")}
-              >
-                <Sparkles />
-                Upgrade to Pro
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
+            {plan === "free" && (
+              <DropdownMenuGroup>
+                <DropdownMenuItem
+                  onClick={() => router.push("/dashboard/upgrade")}
+                >
+                  <Sparkles />
+                  Upgrade to Pro
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            )}
             <DropdownMenuItem onClick={() => signOut({ redirectUrl: "/" })}>
               <LogOut />
               Log out
