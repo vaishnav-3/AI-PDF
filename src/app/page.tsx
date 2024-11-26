@@ -111,7 +111,7 @@ export default function LandingPage() {
                 </div>
               </div>
               <div className="flex items-center justify-center">
-                <Card className="w-full max-w-md">
+                <Card className="w-full ">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <MessageSquare className="w-5 h-5 text-blue-600" />
