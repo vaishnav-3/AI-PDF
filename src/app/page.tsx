@@ -101,7 +101,7 @@ export default function LandingPage() {
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                   <Link
                     href={"/dashboard"}
-                    className="bg-blue-600 py-2 text-white hover:bg-blue-700 flex items-center px-2 rounded-lg"
+                    className="bg-blue-600  w-fit py-2 text-white hover:bg-blue-700 flex items-center px-2 rounded-lg"
                   >
                     Try Notely Free
                   </Link>
@@ -131,9 +131,11 @@ export default function LandingPage() {
                       </div>
                       <div className="p-4 bg-blue-600/10 rounded-lg">
                         <p className="text-sm">
-                          The study found three major impacts: 1) 45%
-                          improvement in learning retention, 2) 30% reduction in
-                          study time, and 3) 92% user satisfaction rate.
+                          The study found three major impacts:
+                          <br /> 1&#41; 45% improvement in learning retention{" "}
+                          <br />
+                          2&#41; 30% reduction in study time <br /> 3&#41; 92%
+                          user satisfaction rate.
                         </p>
                       </div>
                       <div className="flex items-center space-x-2">
