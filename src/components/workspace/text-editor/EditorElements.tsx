@@ -48,7 +48,7 @@ const EditorElements = ({ editor }: { editor: any }) => {
         textContent += d.pageContent;
       });
 
-    const prompt = `For given question: ${selectedText} format the content: ${textContent} like an answer to the question Note: please give output in html format`;
+    const prompt = `For given question: ${selectedText} format the content: ${textContent} like an answer to the question Note: please give output in html format and give body section only also keep the answer to the point dont go out of the question's context`;
     const answer = await chatSession.sendMessage(prompt);
     const allText = editor.getHTML();
     const finalAns = answer.response
