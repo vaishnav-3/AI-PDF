@@ -3,9 +3,9 @@ import PdfViewer from "@/components/workspace/pdf-viewer";
 import TextEditor from "@/components/workspace/text-editor";
 
 interface paramsTypes {
-  params: {
+  params: Promise<{
     fileId: string;
-  };
+  }>;
 }
 
 const page = async ({ params }: paramsTypes) => {
