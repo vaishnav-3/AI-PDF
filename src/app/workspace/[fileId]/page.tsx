@@ -1,6 +1,5 @@
 import WorkspaceHeader from "@/components/workspace/header";
-import PdfViewer from "@/components/workspace/pdf-viewer";
-import TextEditor from "@/components/workspace/text-editor";
+import WorkspaceContent from "@/components/workspace/workspace-content";
 
 interface paramsTypes {
   params: Promise<{
@@ -14,15 +13,9 @@ const page = async ({ params }: paramsTypes) => {
   return (
     <div>
       <WorkspaceHeader />
-      <div className="grid grid-cols-2 gap-5">
-        <div>
-          <TextEditor />
-        </div>
-        <div>
-          <PdfViewer fileId={fileId} />
-        </div>
-      </div>
+      <WorkspaceContent fileId={fileId} />
     </div>
   );
 };
+
 export default page;
