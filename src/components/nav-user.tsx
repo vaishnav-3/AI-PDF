@@ -45,6 +45,14 @@ export function NavUser() {
     });
   };
 
+  const handleSignOut = async () => {
+    try {
+      await signOut({ redirectUrl: "/" }); // Clerk handles redirection
+    } catch (error) {
+      console.error("Sign out failed:", error);
+    }
+  };
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -100,7 +108,7 @@ export function NavUser() {
                 </DropdownMenuItem>
               </DropdownMenuGroup>
             )}
-            <DropdownMenuItem onClick={() => signOut({ redirectUrl: "/" })}>
+            <DropdownMenuItem onClick={handleSignOut}>
               <LogOut />
               Log out
             </DropdownMenuItem>
