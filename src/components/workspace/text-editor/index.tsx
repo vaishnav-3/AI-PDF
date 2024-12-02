@@ -29,7 +29,7 @@ const TextEditor = () => {
     ],
     editorProps: {
       attributes: {
-        class: "focus:outline-none h-screen p-5 w-full",
+        class: "focus:outline-none h-screen p-5 w-full scrollbar-hide overflow-y-auto",
       },
     },
   });
@@ -65,11 +65,11 @@ const TextEditor = () => {
   }, [editor, fileId, user, addNotes]);
 
   return (
-    <div>
+    <div className="scrollbar-hide">
       <div>
         <EditorElements editor={editor} />
       </div>
-      <div className="h-[88vh] overflow-scroll">
+      <div className="h-[88vh] overflow-y-auto scrollbar-hide">
         <EditorContent editor={editor} />
       </div>
     </div>
