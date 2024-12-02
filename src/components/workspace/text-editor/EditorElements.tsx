@@ -66,88 +66,91 @@ const EditorElements = ({ editor }: { editor: any }) => {
   };
 
   return (
-    <div className="control-group p-5">
-      <div className="button-group flex gap-6">
+    <div className="control-group p-2 sm:p-5">
+      <div className="button-group flex flex-wrap gap-2 sm:gap-4 items-center justify-start">
         <button
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 1 }).run()
           }
-          className={
-            editor.isActive("heading", { level: 1 })
-              ? "is-active text-blue-500"
-              : ""
-          }
+          className={`p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition-colors ${
+            editor.isActive("heading", { level: 1 }) ? "is-active text-blue-500" : ""
+          }`}
         >
-          <Heading1 />
+          <Heading1 className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
         <button
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 2 }).run()
           }
-          className={
-            editor.isActive("heading", { level: 2 })
-              ? "is-active text-blue-500"
-              : ""
-          }
+          className={`p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition-colors ${
+            editor.isActive("heading", { level: 2 }) ? "is-active text-blue-500" : ""
+          }`}
         >
-          <Heading2 />
+          <Heading2 className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
         <button
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 3 }).run()
           }
-          className={
-            editor.isActive("heading", { level: 3 })
-              ? "is-active text-blue-500"
-              : ""
-          }
+          className={`p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition-colors ${
+            editor.isActive("heading", { level: 3 }) ? "is-active text-blue-500" : ""
+          }`}
         >
-          <Heading3 />
+          <Heading3 className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
-          className={editor.isActive("bold") ? "is-active text-blue-500 " : ""}
+          className={`p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition-colors ${
+            editor.isActive("bold") ? "is-active text-blue-500" : ""
+          }`}
         >
-          <Bold />
+          <Bold className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={editor.isActive("italic") ? "is-active text-blue-500" : ""}
+          className={`p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition-colors ${
+            editor.isActive("italic") ? "is-active text-blue-500" : ""
+          }`}
         >
-          <Italic />
+          <Italic className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleStrike().run()}
-          className={editor.isActive("strike") ? "is-active text-blue-500" : ""}
+          className={`p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition-colors ${
+            editor.isActive("strike") ? "is-active text-blue-500" : ""
+          }`}
         >
-          <Strikethrough />
+          <Strikethrough className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleHighlight().run()}
-          className={
+          className={`p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition-colors ${
             editor.isActive("highlight") ? "is-active text-blue-500" : ""
-          }
+          }`}
         >
-          <Highlighter />
+          <Highlighter className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={
+          className={`p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition-colors ${
             editor.isActive("bulletList") ? "is-active text-blue-500" : ""
-          }
+          }`}
         >
-          <List />
+          <List className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-          className={
+          className={`p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition-colors ${
             editor.isActive("codeBlock") ? "is-active text-blue-500" : ""
-          }
+          }`}
         >
-          <Code />
+          <Code className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
-        <button className="hover:text-blue-500" onClick={onAIAssist}>
-          <Sparkles />
+        <button 
+          className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition-colors hover:text-blue-500"
+          onClick={onAIAssist}
+        >
+          <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
       </div>
     </div>

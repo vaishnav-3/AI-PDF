@@ -92,39 +92,52 @@ const UploadPdfFile = ({
           {children}
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="w-[90vw] max-w-md mx-auto p-4 sm:p-6">
         <DialogHeader>
-          <DialogTitle>Upload PDF</DialogTitle>
+          <DialogTitle className="text-lg sm:text-xl">Upload PDF</DialogTitle>
         </DialogHeader>
-        <div className="flex flex-col gap-4">
-          <h2>Select a file to upload</h2>
-          <div>
+        <div className="flex flex-col gap-4 mt-2">
+          <h2 className="text-sm sm:text-base">Select a file to upload</h2>
+          <div className="w-full">
             <input
               type="file"
               ref={inputRef}
               accept="application/pdf"
               onChange={(e) => onFileSelect(e)}
+              className="w-full text-sm sm:text-base file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
             />
           </div>
-          <div>
-            <Label htmlFor="filename">File*</Label>
+          <div className="space-y-2">
+            <Label htmlFor="filename" className="text-sm sm:text-base">
+              File Name
+            </Label>
             <Input
               id="filename"
               placeholder="File Name"
               value={filename}
               onChange={(e) => setFilename(e.target.value)}
+              className="text-sm sm:text-base"
             />
           </div>
-          <div className=" flex gap-2 justify-end">
-            <DialogClose>
-              <Button variant="outline">Close</Button>
+          <div className="flex gap-2 justify-end mt-2">
+            <DialogClose asChild>
+              <Button
+                variant="outline"
+                className="text-sm sm:text-base px-3 py-1 h-auto"
+              >
+                Close
+              </Button>
             </DialogClose>
             <Button
               onClick={onUpload}
               disabled={loading}
-              className="bg-blue-500 hover:bg-blue-400"
+              className="bg-blue-500 hover:bg-blue-400 text-sm sm:text-base px-3 py-1 h-auto"
             >
-              {loading ? <Loader2Icon className="animate-spin" /> : "Upload"}
+              {loading ? (
+                <Loader2Icon className="animate-spin h-4 w-4" />
+              ) : (
+                "Upload"
+              )}
             </Button>
           </div>
         </div>
