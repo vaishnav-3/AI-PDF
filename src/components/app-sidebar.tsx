@@ -31,8 +31,8 @@ const data = {
       icon: LayoutPanelLeft,
     },
     {
-      title: "Upgrade plan",
-      url: "/dashboard/upgrade",
+      title: "Courses",
+      url: "http://localhost:3000/dashboard",
       icon: ShieldEllipsis,
     },
   ],
@@ -54,15 +54,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <Link href="/">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg  text-sidebar-primary-foreground">
-                  <Brain className="h-6 w-6 text-blue-600" />
+            
+                <div className="flex gap-2 items-center">
+                <img src="/logo.svg" alt="logo" width={40} height={40} />
+                <h2 className="font-bold text-2xl">LearnX AI</h2>
                 </div>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">Notely.ai</span>
-                  <span className="truncate text-xs">Enterprise</span>
-                </div>
-              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
