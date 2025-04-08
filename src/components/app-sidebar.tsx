@@ -32,7 +32,7 @@ const data = {
     },
     {
       title: "Courses",
-      url: "learnxai.vercel.app/dashboard/",
+      url: "https://learnxai.vercel.app/dashboard",
       icon: ShieldEllipsis,
     },
   ],
@@ -53,7 +53,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
+            <SidebarMenuButton asChild>
             
                 <div className="flex gap-2 items-center">
                 <img src="/logo.svg" alt="logo" width={40} height={40} />
@@ -76,14 +76,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        {userPdfs && plan === "free" && (
+        {/* {userPdfs && plan === "free" && (
           <div>
             <Progress value={(userPdfs.length / 5) * 100} />
             <div>{userPdfs?.length} out of 5 pdf</div>
           </div>
         )}
-        {plan === "unlimited" && <h2>Unlimited</h2>}
-        <NavUser />
+        {plan === "unlimited" && <h2>Unlimited</h2>} */}
+        {/* <NavUser /> */}
       </SidebarFooter>
     </Sidebar>
   );

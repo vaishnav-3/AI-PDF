@@ -1,7 +1,7 @@
 "use client";
 
 import { type LucideIcon } from "lucide-react";
-
+import { UserButton } from '@clerk/nextjs'
 import { Collapsible } from "@/components/ui/collapsible";
 import {
   SidebarGroup,
@@ -37,11 +37,11 @@ export function NavMain({
               <SidebarMenuButton
                 asChild
                 tooltip={item.title}
-                className={`${pathname == item.url ? "hover:bg-blue-500 hover:text-white" : ""}`}
+                className={`${pathname == item.url ? "bg-gray-300" : ""}`}
               >
                 <a
                   href={item.url}
-                  className={`${pathname == item.url ? "bg-blue-500 text-white " : ""}`}
+                  className={`${pathname == item.url ? "bg-gray-300" : ""}`}
                 >
                   <item.icon />
                   <span>{item.title}</span>

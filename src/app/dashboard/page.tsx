@@ -4,6 +4,7 @@ import { api } from "../../../convex/_generated/api";
 import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
+import { UserButton } from '@clerk/nextjs'
 
 const Page = () => {
   const { user } = useUser();
@@ -17,9 +18,14 @@ const Page = () => {
 
   return (
     <div className="p-4 sm:p-8 md:p-12">
-      <h2 className="font-bold text-2xl sm:text-3xl text-center sm:text-start">
-        Workspace
-      </h2>
+      <div className="flex items-center justify-between">
+        <h2 className="font-bold text-2xl sm:text-3xl text-center sm:text-start">
+          Workspace
+        </h2>
+        <div>
+          <UserButton />
+        </div>
+      </div>
 
       <div className="mt-6 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
         {/* Show skeleton loading while the data is being fetched */}

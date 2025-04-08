@@ -43,8 +43,6 @@ export default function LandingPage() {
         </Link>
         <div className="md:hidden ml-auto">
           <Button
-            variant="ghost"
-            size="icon"
             aria-label="Open menu"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >

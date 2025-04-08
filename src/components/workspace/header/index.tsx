@@ -9,7 +9,7 @@ const WorkspaceHeader = () => {
     <div className="shadow-md p-3 flex justify-between items-center">
       <div className="flex items-center gap-4">
         <Link href="/dashboard">
-          <Button variant="ghost" size="icon">
+          <Button >
             <ArrowLeft className="h-5 w-5" />
           </Button>
         </Link>

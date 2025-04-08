@@ -85,10 +85,10 @@ const UploadPdfFile = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild className="mx-2">
-        <Button
-          className="bg-blue-500 hover:bg-blue-400"
-          disabled={limitReached}
-        >
+      <Button
+  className="border-2 border-blue-500 hover:bg-blue-500 hover:text-white"
+  disabled={limitReached}
+>
           {children}
         </Button>
       </DialogTrigger>
@@ -122,7 +122,7 @@ const UploadPdfFile = ({
           <div className="flex gap-2 justify-end mt-1 sm:mt-2">
             <DialogClose asChild>
               <Button
-                variant="outline"
+                // variant="outline"
                 className="text-xs sm:text-sm px-2 sm:px-3 py-1 h-7 sm:h-8"
               >
                 Close
@@ -131,7 +131,7 @@ const UploadPdfFile = ({
             <Button
               onClick={onUpload}
               disabled={loading}
-              className="bg-blue-500 hover:bg-blue-400 text-xs sm:text-sm px-2 sm:px-3 py-1 h-7 sm:h-8"
+              className="border-2 border-blue-500 hover:bg-blue-500 hover:text-white text-xs sm:text-sm px-2 sm:px-3 py-1 h-7 sm:h-8"
             >
               {loading ? (
                 <Loader2Icon className="animate-spin h-3 w-3 sm:h-4 sm:w-4" />
