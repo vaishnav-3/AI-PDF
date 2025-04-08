@@ -35,7 +35,7 @@ export default function LandingPage() {
       <header className="px-4 lg:px-6 h-14 flex  items-center border-b sticky top-0 bg-background z-50">
         <Link className="flex items-center justify-center" href="#">
           <Brain className="h-6 w-6 text-blue-600" />
-          <span className="ml-2 text-xl font-bold">Notely.ai</span>
+          <span className="ml-2 text-xl font-bold">LearnX-AI</span>
         </Link>
         <div className="md:hidden ml-auto">
           <Button

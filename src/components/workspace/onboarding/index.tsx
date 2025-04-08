@@ -22,7 +22,7 @@ const OnboardingSteps = () => {
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
       <div className="bg-white rounded-lg p-6 max-w-md mx-4">
-        <h2 className="text-xl font-bold mb-4">Welcome to Notely.ai!</h2>
+        <h2 className="text-xl font-bold mb-4">Welcome to LearnX-AI!</h2>
         <div className="space-y-4">
           <div className="flex items-start gap-3">
             <div className="bg-blue-100 p-2 rounded">

@@ -6,7 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
-  title: "Notely.ai",
+  title: "LearnX AI",
   description: "AI pdf note taking app",
 };
 

@@ -18,7 +18,7 @@ const WorkspaceHeader = () => {
             <Brain className="h-6 w-6 text-blue-600" />
           </div>
           <div className="grid flex-1 text-left text-sm leading-tight">
-            <span className="truncate font-semibold">Notely.ai</span>
+            <span className="truncate font-semibold">LearnX-AI</span>
           </div>
         </Link>
       </div>

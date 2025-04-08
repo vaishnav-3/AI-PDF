@@ -32,7 +32,7 @@ const data = {
     },
     {
       title: "Courses",
-      url: "http://localhost:3000/dashboard",
+      url: "learnxai.vercel.app/dashboard/",
       icon: ShieldEllipsis,
     },
   ],
