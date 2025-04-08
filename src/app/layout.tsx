@@ -7,6 +7,7 @@ import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "LearnX AI",
+  icons: { icon: "/logo1.svg"},
   description: "AI pdf note taking app",
 };
 

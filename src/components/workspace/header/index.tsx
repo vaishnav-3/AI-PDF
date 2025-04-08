@@ -15,7 +15,7 @@ const WorkspaceHeader = () => {
         </Link>
         <Link href="#" className="flex items-center gap-2">
           <div className="flex aspect-square size-8 items-center justify-center rounded-lg text-sidebar-primary-foreground">
-            <Brain className="h-6 w-6 text-blue-600" />
+            <img src="/logo1.svg" alt="" />
           </div>
           <div className="grid flex-1 text-left text-sm leading-tight">
             <span className="truncate font-semibold">LearnX-AI</span>
